@@ -25,16 +25,10 @@
             maxZoom: 18
         });
 
-        var ruta = L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
-            layers: 'ruta florencia',
-            format: 'image/png',
-            transparent: true,
-            tiled: true,
-            attribution: "Natural Earth"
-        });
+
         var map = L.map('map', {
             center: [1.6183539176511965, -75.60882109864093],/* coordenadas defecto*/
-            layers: [OSM, ruta],
+            layers: OSM,
             zoom: 14,/* zoom po defecto*/
         });
         L.control.scale()
@@ -99,7 +93,32 @@
         }).addTo(map)
 
 
+        var pointA = new L.LatLng(1.6307307597984193, -75.60570439381232);
+        var pointB = new L.LatLng(1.631016721993569, -75.6055183164864);
+        var pointc = new L.LatLng(1.6306764917112746, -75.60522515243618);
+        var pointd = new L.LatLng(1.6306000578265236, -75.60529492660858);
+        var pointe = new L.LatLng(1.6286023443091981, -75.60411183580644);
+        var pointf = new L.LatLng(1.6285423743843752, -75.60418318020164);
+        var pointg = new L.LatLng(1.627663179140693, -75.60355192330182);
+        var pointh = new L.LatLng(1.627321005030625, -75.60348910305832);
+        var pointi = new L.LatLng(1.6272344759856612, -75.60370253517343);
 
+        var j = new L.LatLng(1.6264994405564137, -75.60272606893402);
+        var k = new L.LatLng(1.6222057916624435, -75.60758882121988);
+        var l = new L.LatLng(1.6219274052868746, -75.60737464123515);
+        var m = new L.LatLng(1.6208719250607513, -75.60881865694722);
+        var n = new L.LatLng(1.620765689732567, -75.61007374770391);
+        var o = new L.LatLng(1.6204419248939421, -75.61007374770391);
+        var p = new L.LatLng(1.6196336115479708, -75.60747201815707);
+        var q = new L.LatLng(1.6188577106893691, -75.6064295266254);
+        var r = new L.LatLng(1.6201274766244969, -75.60518961843128);
+        
+        var latlngs = [pointA, pointB,pointc,pointd,pointe,pointf,pointg,pointh,pointi,j,k,l,m,n,o,p,q,r];
+        var polyline = L.polyline(
+            latlngs, { color: 'red' }
+        )
+            .addTo(map)
+            .bindPopup('Avda. Juan Carlos I');
 
     </script>
 </body>
