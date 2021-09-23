@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+        #map {
+            width: 100%;
+            height: 580px;
+            box-shadow: 5px 5px 5px #888;
+        }
+    </style>
+    <script src=" https://unpkg.com/leaflet@1.6.0/dist/leaflet.js "></script>
+    <link rel="stylesheet" href=" https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+
+</head>
+
+<body>
+    <div id='map'>
+    </div>
+    <script>
+        var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+                + 'contributors',
+            maxZoom: 18
+        });
+
+        var ruta = L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
+            layers: 'ruta florencia',
+            format: 'image/png',
+            transparent: true,
+            tiled: true,
+            attribution: "Natural Earth"
+        });
+        var map = L.map('map', {
+            center: [1.6183539176511965, -75.60882109864093],/* coordenadas defecto*/
+            layers: [OSM, ruta],
+            zoom: 14,/* zoom po defecto*/
+        });
+        L.control.scale()
+            .addTo(map);
+
+
+        var myIcon = L.icon({
+            iconUrl: 'https://icon-library.com/images/we-are-here-icon/we-are-here-icon-28.jpg',
+            iconSize: [50, 50],
+            popupAnchor: [-1, -10]
+        });
+
+
+        var marker = L.marker([1.6203189908252857, -75.60426796014109], { icon: myIcon })
+
+            .addTo(map)
+            .bindPopup("Universidad de la Amazonia").openPopup();
+
+
+        var myIcon = L.icon({
+            iconUrl: 'https://icon-library.com/images/we-are-here-icon/we-are-here-icon-28.jpg',
+            iconSize: [50, 50],
+            popupAnchor: [-1, -10]
+        });
+
+
+        var marker = L.marker([1.6149430820609365, -75.61384865028397], { icon: myIcon })
+
+            .addTo(map)
+            .bindPopup("Alcaldia de florencia").openPopup();
+        var marker = L.marker([1.6310290464480044, -75.60552150149162], { icon: myIcon })
+
+            .addTo(map)
+            .bindPopup("Casa de Leidy").openPopup();
+        var circle = L.circle([1.6152711165590892, -75.61377941720683], 500, {
+            color: '#25B49A',
+            fillColor: '#25B49A',
+            fillOpacity: 0.5
+        }).addTo(map);
+        var myIcon = L.icon({
+            iconUrl: 'https://icon-library.com/images/we-are-here-icon/we-are-here-icon-28.jpg',
+            iconSize: [50, 50],
+            popupAnchor: [-1, -10]
+        });
+
+
+        var marker = L.marker([1.6149393032294797, -75.61329100901082], { icon: myIcon })
+
+            .addTo(map)
+            .bindPopup("Parque Santander").openPopup();
+
+
+        var polygon = L.polygon([
+            [1.6151844862100875, -75.61373786037012],
+            [1.6154476071397856, -75.61297690461],
+            [1.614706906222338, -75.61275205216761],
+            [1.614502809873192, -75.61345817149018],
+        ], {
+            color: '#25B441',
+            fillColor: '#3CE95E',
+            fillOpacity: 0.5
+        }).addTo(map)
+
+
+
+
+    </script>
+</body>
+
+</html>
